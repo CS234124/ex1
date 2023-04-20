@@ -43,6 +43,25 @@ IsraeliQueue IsraeliQueueCreate(FriendshipFunction* friendFunctions, ComparisonF
   }
   return queue;
 }
+IsraeliQueue IsraeliQueueClone(IsraeliQueue q); //mine!!
+{
+  if(q==null) //check for nullity
+  {
+    return null;
+  }
+IsraeliQueue clone = (IsraeliQueue)malloc(sizeof(IsraeliQueue)); ;
+clone->rivalry_th=q->rivalry_th;
+clone->friendship_th=q->friendship_th;
+
+    //void (*newFunc)(int) = (void (*)(int)) malloc(sizeof(myFuncCopy)); example of creating  new func
+
+if(){}//check if head is not null for q the loop to see what the result is
+
+ComparisonFunction cloneCompare 
+//need to deal with friendship function see that it is not trivial because you need to create a new one
+return clone;
+
+}
 void IsraeliQueueDestroy(IsraeliQueue queue){
   struct person* p = queue->head;
   while(p != NULL){
