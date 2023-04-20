@@ -40,6 +40,11 @@ IsraeliQueueError IsraeliQueueUpdateFriendshipThreshold(IsraeliQueue queue, int 
     if(queue->friendship_th == threshold) return ISRAELIQUEUE_SUCCESS;
     return ISRAELI_QUEUE_ERROR;
 }
+IsraeliQueueError IsraeliQueueUpdateRivalryThreshold(IsraeliQueue queue, int threshold){
+    queue->rivalry_th = threshold;
+    if(queue->rivalry_th == threshold) return ISRAELIQUEUE_SUCCESS;
+    return ISRAELI_QUEUE_ERROR;
+}
 
 
 
