@@ -20,7 +20,7 @@ struct IsraeliQueue_t
 
 };
 IsraeliQueue IsraeliQueueCreate(FriendshipFunction* friendFunctions, ComparisonFunction compFunction, int friendThres, int rivalTres){
-  struct IsraeliQueue_t *queue = (struct IsraeliQueue_t*)malloc(sizeof(struct IsraeliQueue_t));
+  IsraeliQueue queue = (IsraeliQueue)malloc(sizeof(IsraeliQueue));
   queue->friendshipFunctions = friendFunctions;
   queue->compare = compFunction;
   queue->friendship_th = friendThres;
