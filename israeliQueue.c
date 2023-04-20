@@ -27,6 +27,14 @@ IsraeliQueue IsraeliQueueCreate(FriendshipFunction* friendFunctions, ComparisonF
   queue->rivalry_th = rivalTres;
   return queue;
 }
+void IsraeliQueueDestroy(IsraeliQueue queue){
+  struct person* p = queue->head;
+  while(p != NULL){
+    struct person* temp = p;
+    p = p->next;
+    free(temp);
+  }
+}
 
 
 
