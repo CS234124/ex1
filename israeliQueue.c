@@ -3,17 +3,19 @@
 #include "tools/israeliqueue.h"
 
 //creating the nodes of people in our list with the relevant values
-typedef struct person 
+typedef struct Person 
 {
 int friendsPassed;
 int enemyHeldBack;
-struct person* next;
-} person;
+struct Person* next;
+} Person;
 
 struct IsraeliQueue_t
 {
  person* head;
- //2 implementation of array of functions one for frindships and one for 
+ int friendshipCounter=0; //for realloc and free
+   FriendshipFunction* friendshipFunctions; 
+   ComparisonFunction compare;
  int friendship_th;
  int rivalry_th;
 
