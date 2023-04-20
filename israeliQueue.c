@@ -10,7 +10,7 @@ int enemyHeldBack;
 struct Person* next;
 } Person;
 
-struct IsraeliQueue_t
+struct IsraeliQueue
 {
  person* head;
  int friendshipCounter=0; //for realloc and free
@@ -18,6 +18,11 @@ struct IsraeliQueue_t
    ComparisonFunction compare;
  int friendship_th;
  int rivalry_th;
+
+}
+IsraeliQueue IsraeliQueueClone(IsraeliQueue q)
+{
+
 
 }
 
