@@ -6,8 +6,8 @@
 typedef struct person {
   int friendsPassed;
   int enemyHeldBack;
-struct Person* next;
-} Person;
+struct person* next;
+} person;
 
 struct IsraeliQueue_t
 {
@@ -34,6 +34,11 @@ void IsraeliQueueDestroy(IsraeliQueue queue){
     p = p->next;
     free(temp);
   }
+}
+IsraeliQueueError IsraeliQueueUpdateFriendshipThreshold(IsraeliQueue queue, int threshold){
+    queue->friendship_th = threshold;
+    if(queue->friendship_th == threshold) return ISRAELIQUEUE_SUCCESS;
+    return ISRAELI_QUEUE_ERROR;
 }
 
 
