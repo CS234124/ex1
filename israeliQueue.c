@@ -2,12 +2,14 @@
 #include <stdlib.h>     
 #include "IsraeliQueue.h"
 
+typedef struct person * personPtr; //for cleaner code
+typedef struct funcNode* funcNodePtr;//for cleaner code
 //creating the nodes of people in our list with the relevant values
 typedef struct person {
   int friendsPassed;
   int enemyHeldBack;
 struct person* next;
-} person;
+};
 
 struct funcNode{
   FriendshipFunction func;
@@ -16,10 +18,8 @@ struct funcNode{
 
 struct IsraeliQueue_t
 {
-  struct person* head;
-  struct funcNode* funcList;
-  //int friendshipCounter; //for realloc and free
-  //FriendshipFunction* friendshipFunctions;
+  personPtr head;
+  funcNodePtr funcList;
   ComparisonFunction compare;
   int friendship_th;
   int rivalry_th;
@@ -31,12 +31,14 @@ IsraeliQueue IsraeliQueueCreate(FriendshipFunction* friendFunctions, ComparisonF
   queue->compare = compFunction;
   queue->friendship_th = friendThres;
   queue->rivalry_th = rivalTres;
-  if(friendFunctions[0] != NULL){
-    queue->funcList = (struct funcNode*)(malloc(sizeof(struct funcNode)));
+  if(friendFunctions[0] != NULL)
+  {
+    queue->funcList = (funcNodePtr)(malloc(sizeof(struct funcNode)));
     queue->funcList->func = friendFunctions[0];
-    struct funcNode *temp = queue->funcList;
-    for(int i = 1 ; friendFunctions[i] != NULL ; i++){
-      temp->next = (struct funcNode*)(malloc(sizeof(struct funcNode)));
+    funcNodePtr temp = queue->funcList;
+    for(int i = 1 ; friendFunctions[i] != NULL ; i++)
+    {
+      temp->next = (funcNodePtr)(malloc(sizeof(struct funcNode)));
       temp->next->func = friendFunctions[i];
       temp = temp->next;
     }
@@ -63,27 +65,35 @@ return clone;
 
 }
 void IsraeliQueueDestroy(IsraeliQueue queue){
-  struct person* p = queue->head;
-  while(p != NULL){
-    struct person* temp = p;
+  personPtr p = queue->head;
+  while(p != NULL)
+  {
+    personPtr temp = p;
     p = p->next;
     free(temp);
   }
-  struct funcNode* f = queue->funcList;
-  while(f != NULL){
-    struct funcNode* temp = f;
+  funcNodePtr f = queue->funcList;
+  while(f != NULL)
+  {
+    funcNodePtr temp = f;
     f = f->next;
     free(temp);
   }
 }
 IsraeliQueueError IsraeliQueueUpdateFriendshipThreshold(IsraeliQueue queue, int threshold){
     queue->friendship_th = threshold;
-    if(queue->friendship_th == threshold) return ISRAELIQUEUE_SUCCESS;
+    if(queue->friendship_th == threshold) 
+    {
+      return ISRAELIQUEUE_SUCCESS;
+    }
     return ISRAELI_QUEUE_ERROR;
 }
 IsraeliQueueError IsraeliQueueUpdateRivalryThreshold(IsraeliQueue queue, int threshold){
     queue->rivalry_th = threshold;
-    if(queue->rivalry_th == threshold) return ISRAELIQUEUE_SUCCESS;
+    if(queue->rivalry_th == threshold)
+    {
+      return ISRAELIQUEUE_SUCCESS;
+    }
     return ISRAELI_QUEUE_ERROR;
 }
 
